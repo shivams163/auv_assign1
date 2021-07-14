@@ -1,0 +1,17 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find demo_bot_gazebo)/worlds/mydemo_bot.world"/>
+  </include>
+  
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find demo_bot_gazebo)/urdf/demo_bot_1.xacro' " />
+
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default ="0.0" />
+
+  <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen" respawn="false"
+    args="-urdf -param robot_description -model demo_bot_1 " /> -->
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
+   args="-file $(find demo_bot_gazebo)/urdf/demo_bot_2.urdf -urdf -model demo_bot_2" />
+</launch>
